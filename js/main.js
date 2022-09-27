@@ -121,9 +121,7 @@ const clearAnswers = () => {
 const getSelected = () => {
   let answer;
   [...answerElements].forEach((answerElement) => {
-    if (answerElement.checked) {
-      answer = answerElement.id;
-    }
+      answerElement.checked && (answer = answerElement.id);
   });
   return answer;
 };
