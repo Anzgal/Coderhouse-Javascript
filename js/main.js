@@ -127,12 +127,12 @@ const getSelected = () => {
 };
 const loadQuestion = () => {
   clearAnswers();
-  const currentQuestionData = questionsList[currentQuestion];
-  questionElement.innerText = currentQuestionData.question;
-  a_content.innerText = currentQuestionData.a;
-  b_content.innerText = currentQuestionData.b;
-  c_content.innerText = currentQuestionData.c;
-  d_content.innerText = currentQuestionData.d;
+  const {question, a, b, c, d} = questionsList[currentQuestion];
+  questionElement.innerText = question;
+  a_content.innerText = a;
+  b_content.innerText = b;
+  c_content.innerText = c;
+  d_content.innerText = d;
 };
 loadQuestion();
 submitButton.addEventListener("click", () => {
