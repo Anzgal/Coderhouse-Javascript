@@ -153,7 +153,20 @@ submitButton.addEventListener("click", () => {
       responseData.correctAnswers = score;
       //console.log(responseData);
       localStorage.setItem("responses", JSON.stringify([...(localObject || []), responseData] ));
-      quiz.innerHTML = `<h2>Tuviste ${score} preguntas correctas de ${questionsList.length}</h2><button onclick="window.location.reload();">Jugar de nuevo</button>`;
+      //quiz.innerHTML = `<h2>Tuviste ${score} preguntas correctas de ${questionsList.length}</h2><button onclick="window.location.reload();">Jugar de nuevo</button>`;
+      Swal.fire({
+        title: 'Buen trabajo!',
+        text: `Tuviste ${score} preguntas correctas de ${questionsList.length}`,
+        icon: 'success',
+        confirmButtonText: 'Jugar de nuevo',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+
+      }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.reload();
+        }
+      })
     }
   }
 });
