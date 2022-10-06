@@ -1,6 +1,6 @@
 async function fetchQuestions() {
   try {
-    const response = await fetch("../questions.json");
+    const response = await fetch("https://anzgal.github.io/Coderhouse-Javascript/questions.json");
     const data = await response.json();
     return data;
   } catch (error) {
