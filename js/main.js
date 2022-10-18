@@ -1,6 +1,8 @@
 async function fetchQuestions() {
   try {
-    const response = await fetch("https://anzgal.github.io/Coderhouse-Javascript/questions.json");
+    const response = await fetch(
+      "https://anzgal.github.io/Coderhouse-Javascript/questions.json"
+    );
     const data = await response.json();
     return data;
   } catch (error) {
@@ -11,8 +13,6 @@ async function fetchQuestions() {
 async function main() {
   const questionsFetched = await fetchQuestions();
 
-  console.log("questionsFetched", questionsFetched);
-
   const quiz = document.getElementById("quiz-container");
   const answerElements = document.getElementsByClassName("answer");
   const questionElement = document.getElementById("question");
@@ -21,8 +21,6 @@ async function main() {
   const c_content = document.getElementById("c_content");
   const d_content = document.getElementById("d_content");
   const submitButton = document.getElementById("submit");
-  const localObject = JSON.parse(localStorage.getItem("responses"));
-  console.log(localObject);
   const responseData = {
     time: Date.now(),
     correctAnswers: 0,
@@ -66,16 +64,22 @@ async function main() {
         loadQuestion();
       } else {
         responseData.correctAnswers = score;
-        //console.log(responseData);
+        const localObject = JSON.parse(localStorage.getItem("responses"));
         localStorage.setItem(
           "responses",
           JSON.stringify([...(localObject || []), responseData])
         );
-        //quiz.innerHTML = `<h2>Tuviste ${score} preguntas correctas de ${questionsFetched.length}</h2><button onclick="window.location.reload();">Jugar de nuevo</button>`;
+        let responsesHTML = "";
+        localObject.forEach((result) => {
+          let resultDate = new Date(result.time);
+          responsesHTML =
+            responsesHTML + "<tr>" + `<td>${resultDate.toLocaleString()}</td>` + `<td>${result.correctAnswers}/${result.responses.length}</td>` + "</tr>";
+        });
         Swal.fire({
           title: "Buen trabajo!",
           text: `Tuviste ${score} preguntas correctas de ${questionsFetched.length}`,
           icon: "success",
+          html: `<p>Tuviste ${score} preguntas correctas de ${questionsFetched.length}</p>` + "<p><b>Resultados anteriores</b>:</p>" + "<table>" + "<tr><th>Fecha</th><th>Resultado</th></tr>" + responsesHTML + "</table>",
           confirmButtonText: "Jugar de nuevo",
           allowOutsideClick: false,
           allowEscapeKey: false,
