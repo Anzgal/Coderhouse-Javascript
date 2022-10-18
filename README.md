@@ -16,4 +16,4 @@ Conceptos aplicados:
 - Fetch
 
 [Link al proyecto](https://anzgal.github.io/Coderhouse-Javascript/)
-![Screenshot del proyecto](https://github.com/Anzgal/Coderhouse-Web/blob/main/assets/img/Adoptamex-screenshot.png?raw=true)
+![Screenshot del proyecto](https://github.com/Anzgal/Coderhouse-Javascript/blob/main/Proyecto-Javascript-Screenshot.png?raw=true)
